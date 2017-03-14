@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <math.h>
 #define N 5
 float square(int x[], int y[], int i ) {
 	float s=0;
@@ -10,8 +11,10 @@ float square(int x[], int y[], int i ) {
 }
 
 int main() {
-	int x[N] = { 2,4,6,8,7 }, y[N] = {2,6,4,5,2}, i;
+	int x[N], y[N], i;
 	float s1=0,so=0;
+	for (i=0;i<N;i++)
+		scanf_s("%d\n%d", &x[i], &y[i]);
 	for (i = 0; i < N; i++) 
 	{
 		s1 = square (x,y,i);
@@ -19,9 +22,11 @@ int main() {
 
 			so += s1;
 		else 
-			so -= s1;
+			so -= fabs(s1);
 	}
-	printf("%f\n", so);
+	for (i = 0; i < N; i++)
+		printf("%d\n", x[i]);
+	printf("%.2f\n", so);
+
 	return 0;
 }
-//scanf_s("%d\n%d", &x[i], &y[i]);
