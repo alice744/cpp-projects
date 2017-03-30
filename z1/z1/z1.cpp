@@ -1,31 +1,31 @@
 #include <stdio.h>
 #include <math.h>
-#define N 5
-float square(int x[], int y[], int i ) {
+#define N 100
+float square(float x[], float y[], int i, int length) {
 	float s=0;
-	if (i<N-1)
-		s = (float)((x[i + 1] - x[i])*(y[i] + y[i + 1])) / 2;
+	if (i < length - 1)
+		s = ((x[i + 1] - x[i])*(y[i] + y[i + 1]));
 	else
-		s = (float)((x[i] - x[0])*(y[0] + y[i])) / 2;
+		s = ((x[0]-x[i])*(y[0] + y[i]));
 	return s;
 }
 
 int main() {
-	int x[N], y[N], i;
+	 float x[N], y[N];
+	 int i, length;
 	float s1=0,so=0;
-	for (i=0;i<N;i++)
-		scanf_s("%d\n%d", &x[i], &y[i]);
-	for (i = 0; i < N; i++) 
-	{
-		s1 = square (x,y,i);
-		if (x[i] < x[i + 1])
-
-			so += s1;
-		else 
-			so -= fabs(s1);
+	printf("Enter count of points ");
+	scanf_s("%d", &length);
+	if (0 >= length || N < length) {
+		return -1;
 	}
-	for (i = 0; i < N; i++)
-		printf("%d\n", x[i]);
+	for (i=0;i<length;i++)
+		scanf_s("%f\n%f", &x[i], &y[i]);
+	for (i = 0; i < length; i++) 
+	{
+		so += square (x,y,i,length);
+	}
+	so = (float)(fabs(so*0.5));
 	printf("%.2f\n", so);
 
 	return 0;
